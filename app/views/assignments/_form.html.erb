@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@assignment) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :game %>
+    <%= f.association :center_referee %>
+    <%= f.association :assistant_referee_1 %>
+    <%= f.association :assistant_referee_2 %>
+    <%= f.association :fourth_official %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

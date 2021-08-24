@@ -10,9 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_08_24_232811) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "center_referee_id", null: false
+    t.bigint "assistant_referee_1_id", null: false
+    t.bigint "assistant_referee_2_id", null: false
+    t.bigint "fourth_official_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assistant_referee_1_id"], name: "index_assignments_on_assistant_referee_1_id"
+    t.index ["assistant_referee_2_id"], name: "index_assignments_on_assistant_referee_2_id"
+    t.index ["center_referee_id"], name: "index_assignments_on_center_referee_id"
+    t.index ["fourth_official_id"], name: "index_assignments_on_fourth_official_id"
+    t.index ["game_id"], name: "index_assignments_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "home_team"
+    t.string "away_team"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.hstore "address"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "cell_phone"
+    t.string "work_phone"
+    t.string "home_phone"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "assignments", "games"
+  add_foreign_key "assignments", "users", column: "assistant_referee_1_id"
+  add_foreign_key "assignments", "users", column: "assistant_referee_2_id"
+  add_foreign_key "assignments", "users", column: "center_referee_id"
+  add_foreign_key "assignments", "users", column: "fourth_official_id"
 end

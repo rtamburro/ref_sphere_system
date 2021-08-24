@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game: one
+  center_referee: one
+  assistant_referee_1: one
+  assistant_referee_2: one
+  fourth_official: one
+
+two:
+  game: two
+  center_referee: two
+  assistant_referee_1: two
+  assistant_referee_2: two
+  fourth_official: two
