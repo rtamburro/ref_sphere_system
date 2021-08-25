@@ -1,21 +1,53 @@
 
 <div class="z-0 w-full py-40 pt-32 pb-20 bg-black"></div>
-<div class="inline-flex">
+<div class="inline-flex mb-10">
     <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b5/b51e51af5415ed472b9a0b4528baa46151ec95c6_full.jpg" 
     class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80">
     <div>
-        <h1 class="pt-4 pl-4 text-2xl text-left"><%= @user.first_name %></h1>
+        <h1 class="pt-4 pl-4 text-2xl text-left"><%= current_user.first_name %></h1>
         <h1 class="pt-2 pl-4 text-sm text-left text-red-500">REFEREE GRADE HERE</h1>
     </div>
 </div>
 
+<div class="ml-40 mb-20">
+    <h1 class="mb-4"><strong>Contact Information:</strong></h1>
+    <div>
+        <h1 class="mb-4"><strong>Email: </strong><%= current_user.email %></h1>
+        <div class="mb-4">
+            <h1 class=""><strong>Cell Phone: </strong><%= current_user.cell_phone %></h1>
+            <h1 class=""><strong>Work Phone: </strong><%= current_user.work_phone %></h1>
+            <h1 class=""><strong>Home Phone: </strong><%= current_user.home_phone %></h1>
+        </div>
+        <div class="mb-4">
+            <h1 class=""><strong>Address: </strong></h1>
+            <h1 class=""><%= current_user.address["street_address"] %></h1>
+            <h1 class=""><%= current_user.address["city"] %>, <%= current_user.address["state"] %>, <%= current_user.address["zip_code"] %></h1>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%
+=begin%>
+ List games
 <% @user1.games.each do |game| %>
    <p> <%= game.home_team %> vs <%= game.away_team %> </p>
-<% end %>
+<% end %> 
+<%
+=end%>
 
-<div class="mb-32">
+<div class="mb-32 ml-40 mr-40">
 <%= month_calendar(events: @user1.games) do |date, games| %>
-	<h1><%= date.day %></h1>
+	<h1 class=><%= date.day %></h1>
 
 	<% games.each do |game| %>
 		<%= link_to game do %>
