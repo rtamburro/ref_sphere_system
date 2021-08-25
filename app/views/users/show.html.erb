@@ -8,3 +8,20 @@
         <h1 class="pt-2 pl-4 text-sm text-left text-red-500">REFEREE GRADE HERE</h1>
     </div>
 </div>
+
+<% @user1.games.each do |game| %>
+   <p> <%= game.home_team %> vs <%= game.away_team %> </p>
+<% end %>
+
+<div class="mb-32">
+<%= month_calendar(events: @user1.games) do |date, games| %>
+	<h1><%= date.day %></h1>
+
+	<% games.each do |game| %>
+		<%= link_to game do %>
+			<h1 class="text-center text-blue-500"><%= game.teams %></h1>
+            
+        <% end %>
+	<% end %>
+<% end %>
+</div>
