@@ -28,12 +28,22 @@ module.exports = {
       rose: colors.rose,
       white: colors.white,
       black: colors.black,
-      blueGray: colors.blueGray
-    },  
+      blueGray: colors.blueGray,
+      transparent: 'transparent',
+    },
+    borderWidth: {
+      DEFAULT: '1px',
+      '0': '0',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
+      '6': '6px',
+      '8': '8px',
+    },
     extend: {},
   },
   variants: {
     extend: {},
   },
   plugins: [],
-} 
+}

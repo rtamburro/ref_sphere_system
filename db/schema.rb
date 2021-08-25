@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2021_08_24_232811) do
 
   create_table "assignments", force: :cascade do |t|
     t.bigint "game_id", null: false
-    t.bigint "center_referee_id", null: false
-    t.bigint "assistant_referee_1_id", null: false
-    t.bigint "assistant_referee_2_id", null: false
-    t.bigint "fourth_official_id", null: false
+    t.bigint "center_referee_id"
+    t.bigint "assistant_referee_1_id"
+    t.bigint "assistant_referee_2_id"
+    t.bigint "fourth_official_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["assistant_referee_1_id"], name: "index_assignments_on_assistant_referee_1_id"

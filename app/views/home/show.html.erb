@@ -1,2 +1,27 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<div class="m-20">
+
+
+<div>
+    <% @games.each do | game | %>
+        <%= link_to game do %>
+            <p><%= game.home_team %> vs <%= game.away_team %></p>
+        <% end %>
+        <p><%= game.start_time.strftime("%b %d, %Y %I:%M%P")  %> - <%= game.end_time.strftime("%I:%M%P")  %></p>
+        <br>
+        
+    <% end %>
+</div>
+
+<div class="mb-32">
+<%= month_calendar(events: @games) do |date, games| %>
+	<h1><%= date.day %></h1>
+
+	<% games.each do |game| %>
+		<%= link_to game do %>
+			<h1 class="text-center text-blue-500"><%= game.teams %></h1>
+            
+        <% end %>
+	<% end %>
+<% end %>
+</div>
+</div>
