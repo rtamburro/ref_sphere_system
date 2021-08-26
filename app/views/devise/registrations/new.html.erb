@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center h-screen my-32">
   <div class="w-full max-w-2xl ">
     <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="mb-4">
         <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Profile Picture</label>
           <%= f.file_field :image, accept: 'image/png, image/jpeg', direct_upload: true %>
@@ -76,19 +76,19 @@
       </div>
       <div class="mb-4">
         <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Referee Grade</label>
-                <%= f.input :grade,
-                            collection: User.grades,
+          <%= f.select :grade, options_for_select(User.grades.map { |key, value| [key.humanize, key] }), {prompt: "Select Grade"}, class: "form-control",
+                             
                             label:false,
                             autofocus: true,
-                            input_html: { autocomplete: "home phone", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                            input_html: { autocomplete: "grade", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
       </div>
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Role</label>
-                <%= f.input :role,
-                            collection: User.roles,
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Referee Grade</label>
+          <%= f.select :role, options_for_select(User.roles.map { |key, value| [key.humanize, key] }), {prompt: "Select Grade"}, class: "form-control",
+                             
                             label:false,
                             autofocus: true,
-                            input_html: { autocomplete: "home phone", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                            input_html: { autocomplete: "role", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
       </div>
       <div class="flex items-center justify-between">
         <%= f.button :submit, "Sign Up", class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"  %>
