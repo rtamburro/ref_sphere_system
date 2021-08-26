@@ -13,15 +13,22 @@
 </div>
 
 <div class="mb-32">
-<%= month_calendar(events: @games) do |date, games| %>
+<%= month_calendar(events: @games+@blocks) do |date, events| %>
 	<h1><%= date.day %></h1>
 
-	<% games.each do |game| %>
-		<%= link_to game do %>
-			<h1 class="text-center text-blue-500"><%= game.teams %></h1>
-            
-        <% end %>
-	<% end %>
+	<% events.each do |event| %>
+        <div>
+            <% if event.is_a? Game %>
+                <%= link_to event do %>
+			        <h1 class="text-center bg-green-600 text-white"><%= event.teams %></h1>
+                <% end %>
+            <% elsif event.is_a? Block %>
+                <%= link_to event do %>
+                    <h1 class="text-center bg-red-500"> Block: <%= event.start_time.strftime("%I:%M%P")  %> - <%= event.end_time.strftime("%I:%M%P")  %> </h1>
+                <% end %>
+            <% end %>
+        </div>    
+    <% end %>
 <% end %>
 </div>
 </div>

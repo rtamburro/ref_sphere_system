@@ -14,3 +14,14 @@
  *= require_self
  */
  @import "simple_calendar";
+
+.simple-calendar .today {
+    background-color: gray;
+}
+
+.calendar-heading {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}

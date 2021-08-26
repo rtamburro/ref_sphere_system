@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save :normalize_phone
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :assignments
   has_many :games, through: :assignments
+  has_many :blocks, dependent: :destroy
 
   def games
     Game.joins(:assignment).where("assignments.center_referee_id = ? OR assignments.assistant_referee_1_id = ? OR assignments.assistant_referee_2_id = ? OR assignments.fourth_official_id = ?", id, id, id, id)
@@ -23,8 +25,7 @@ class User < ApplicationRecord
   def assigned_games
     Game.joins(:assignment).where('assignments.center_referee_id = ? OR assignments.assistant_referee_1_id = ? OR assignments.assistant_referee_2_id = ? OR assignments.fourth_official_id = ?', id, id, id, id).map { |game| game.teams}
   end
-
-
+  
   def formatted_cell_phone
     parsed_phone = Phonelib.parse(cell_phone)
     return cell_phone if parsed_phone.invalid?
@@ -67,6 +68,8 @@ class User < ApplicationRecord
     formatted
   end
 
+  private
+  
   def normalize_phone
     self.cell_phone = Phonelib.parse(cell_phone).full_e164.presence
     self.work_phone = Phonelib.parse(work_phone).full_e164.presence
