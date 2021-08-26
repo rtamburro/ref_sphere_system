@@ -62,6 +62,6 @@ gem 'friendly_id', '~> 5.4.0'
 gem "simple_calendar", "~> 2.4"
 gem 'devise'
 gem 'cancancan'
-gem 'devise_invitable', '~> 2.0.0'
 gem "phonelib"
 gem 'faker'
+gem 'devise_invitable', '~> 2.0.0'
