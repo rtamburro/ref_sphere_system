@@ -12,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
       :home_phone,
       :grade,
       :role,
+      :profile_picture,
       address: [:street_address, :city, :state, :zip])
   end
 
@@ -20,11 +21,13 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :password_confirmation,
+      :current_password,
       :cell_phone,
       :work_phone,
       :home_phone,
       :grade,
       :role,
+      :profile_picture,
       address: [:street_address, :city, :state, :zip])
   end
 end

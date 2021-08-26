@@ -1,0 +1,12 @@
+development: 
+  cloud_name: "rtamburro"
+  api_key: "277314538279243"
+  api_secret: "icIUWdfS47-Y_BM6ujISYLCIhZY"
+  secure: true
+
+production:
+  cloud_name: "rtamburro"
+  api_key: "277314538279243"
+  api_secret: "icIUWdfS47-Y_BM6ujISYLCIhZY"
+  secure:true
+  

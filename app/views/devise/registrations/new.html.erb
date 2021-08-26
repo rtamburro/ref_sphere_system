@@ -1,9 +1,13 @@
 <div class="flex flex-col items-center h-screen my-32">
   <div class="w-full max-w-2xl ">
     <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Email</label>
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Profile Picture</label>
+          <%= f.file_field :image, accept: 'image/png, image/jpeg', direct_upload: true %>
+      </div>	
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Email</label>     
             <%= f.input :email,
                 label: false,
                 autofocus: true,

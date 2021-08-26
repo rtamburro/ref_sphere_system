@@ -1,8 +1,7 @@
 
 <div class="z-0 w-full py-40 pt-32 pb-20 bg-black"></div>
 <div class="inline-flex mb-10">
-    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b5/b51e51af5415ed472b9a0b4528baa46151ec95c6_full.jpg" 
-    class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80">
+    <img class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80" src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.5, :width=>300, :height=>300, :crop=>"thumb") %> >
     <div>
         <h1 class="pt-4 pl-4 text-2xl text-left"><%= current_user.first_name %></h1>
         <h1 class="pt-2 pl-4 text-sm text-left text-red-500">REFEREE GRADE HERE</h1>

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :assignments
   has_many :games, through: :assignments
   has_many :blocks, dependent: :destroy
+  has_one_attached :profile_picture
 
   enum role: {Refere: 0, Assessor: 1, Assignor: 2, Admin: 3}
   enum grade: {Grassroots: 0, Regional: 1, National: 2, "P.R.O": 3, FIFA: 4}
