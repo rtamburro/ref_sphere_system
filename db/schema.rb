@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_135509) do
+ActiveRecord::Schema.define(version: 2021_08_26_153340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 2021_08_26_135509) do
   create_table "blocks", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_blocks_on_user_id"
   end
 

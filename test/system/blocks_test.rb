@@ -16,6 +16,7 @@ class BlocksTest < ApplicationSystemTestCase
 
     fill_in "End time", with: @block.end_time
     fill_in "Start time", with: @block.start_time
+    fill_in "User", with: @block.user_id
     click_on "Create Block"
 
     assert_text "Block was successfully created"
@@ -28,6 +29,7 @@ class BlocksTest < ApplicationSystemTestCase
 
     fill_in "End time", with: @block.end_time
     fill_in "Start time", with: @block.start_time
+    fill_in "User", with: @block.user_id
     click_on "Update Block"
 
     assert_text "Block was successfully updated"

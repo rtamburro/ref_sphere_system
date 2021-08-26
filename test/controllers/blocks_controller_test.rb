@@ -17,7 +17,7 @@ class BlocksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create block" do
     assert_difference('Block.count') do
-      post blocks_url, params: { block: { end_time: @block.end_time, start_time: @block.start_time } }
+      post blocks_url, params: { block: { end_time: @block.end_time, start_time: @block.start_time, user_id: @block.user_id } }
     end
 
     assert_redirected_to block_url(Block.last)
@@ -34,7 +34,7 @@ class BlocksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update block" do
-    patch block_url(@block), params: { block: { end_time: @block.end_time, start_time: @block.start_time } }
+    patch block_url(@block), params: { block: { end_time: @block.end_time, start_time: @block.start_time, user_id: @block.user_id } }
     assert_redirected_to block_url(@block)
   end
 

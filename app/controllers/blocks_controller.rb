@@ -3,7 +3,8 @@ class BlocksController < ApplicationController
 
   # GET /blocks or /blocks.json
   def index
-    @blocks = Block.all
+    @blocks = Block.all.order("created_at DESC")
+    @block = Block.new
   end
 
   # GET /blocks/1 or /blocks/1.json
@@ -12,7 +13,7 @@ class BlocksController < ApplicationController
 
   # GET /blocks/new
   def new
-    @block = Block.new
+    @block = current_user.blocks.new
   end
 
   # GET /blocks/1/edit
@@ -21,7 +22,7 @@ class BlocksController < ApplicationController
 
   # POST /blocks or /blocks.json
   def create
-    @block = Block.new(block_params)
+    @block = current_user.blocks.new(block_params)
 
     respond_to do |format|
       if @block.save

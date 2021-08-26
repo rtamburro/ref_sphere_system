@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :blocks
   devise_for :users, :controllers => {registrations: 'registrations'}
   resources :assignments
   resources :games
-  resources :blocks
   resources :users, :only =>[:show]
   
 
