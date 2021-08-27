@@ -21,7 +21,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <header class="flex flex-wrap items-center px-6 py-2 bg-gray-700 lg:px-16 lg:py-0">
+    <header class="flex flex-wrap items-center px-6 py-2 bg-gray-700 lg:px-16 lg:py-2">
       <div class="flex items-center justify-between flex-1">
         <%= link_to root_path do %>
         <h1 class="flex items-center justify-between flex-1 text-2xl text-white">
@@ -43,6 +43,7 @@
         <div class="hidden w-full lg:flex lg:items-center lg:w-auto" id="menu">
           <nav>
             <ul class="items-center justify-between pt-4 text-base text-white lg:flex lg:pt-0">
+            <% if user_signed_in? %>
               <li>
                 <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
                   <h1>Home</h1>
@@ -59,41 +60,29 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Availability</h1>
+                <%= link_to destroy_user_session_path, method: :delete, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Sign Out</h1>
                 <% end %>
               </li>
+              <%= link_to current_user do %>
+                <% if current_user.profile_picture.attached? %>
+                  <img src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.7, :width=>300, :height=>300, :crop=>"thumb") %> class="w-12 h-12 ml-4 border-2 border-transparent rounded-full hover:border-red-500" alt="name">
+                <% else %>
+                  <%= image_tag("profile_default.jpg", class: "w-12 h-12 ml-4 border-2 border-transparent rounded-full hover:border-red-500") %>
+                <% end %>
+              <% end %> 
+            <% else %>
               <li>
                 <%= link_to new_user_session_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
                   <h1>Sign In</h1>
                 <% end %>
               </li>
-              <% if user_signed_in? %>
-              <li>
-                <%= link_to current_user, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Profile</h1>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Sign Out</h1>
-                <% end %>
-              </li>
-              <% end %>
-              
+            <% end %>  
             </ul>
           </nav>
-          <a href="#" class="flex items-center justify-start mb-4 cursor-pointer lg:ml-4 lg:mb-0">
-            <img src="https://cbsnews3.cbsistatic.com/hub/i/r/2019/08/14/fdb57460-b0a7-4298-b25d-f58309048548/thumbnail/620x413/45e28f81a749aaa20eeb409393ed45c5/gettyimages-1168042139.jpg" class="w-10 h-10 border-2 border-transparent rounded-full hover:border-red-500" alt="name">
-          </a> 
         </div>
       </div>
-      
     </header>
-
-
-
-    
     <%= yield %>
   </body>
 </html>

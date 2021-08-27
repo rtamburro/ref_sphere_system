@@ -1,10 +1,13 @@
-
 <div class="z-0 w-full py-40 pt-32 pb-20 bg-black"></div>
 <div class="inline-flex mb-10">
-    <img class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80" src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.5, :width=>300, :height=>300, :crop=>"thumb") %> >
+    <% if current_user.profile_picture.attached? %>
+        <img class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80" src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.5, :width=>300, :height=>300, :crop=>"thumb") %> >
+    <% else %>
+        <%= image_tag("profile_default.jpg", class: "w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80") %>
+    <% end %>
     <div>
         <h1 class="pt-4 pl-4 text-2xl text-left"><%= current_user.first_name %></h1>
-        <h1 class="pt-2 pl-4 text-sm text-left text-red-500">REFEREE GRADE HERE</h1>
+        <h1 class="pt-2 pl-4 text-sm text-left"><%= current_user.grade %> Referee</h1>
     </div>
 </div>
 
@@ -15,7 +18,7 @@
         <div class="mb-4">
             <h1 class=""><strong>Cell Phone: </strong><%= current_user.formatted_cell_phone %></h1>
             <h1 class=""><strong>Work Phone: </strong><%= current_user.formatted_work_phone %></h1>
-            <h1 class=""><strong>Home Phone: </strong><%= current_user.home_phone %></h1>
+            <h1 class=""><strong>Home Phone: </strong><%= current_user.formatted_home_phone %></h1>
         </div>
         <div class="mb-4">
             <h1 class=""><strong>Address: </strong></h1>
