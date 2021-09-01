@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     colors: {
       gray: colors.gray,
+      coolGray: colors.coolGray,
       red: colors.red,
       orange: colors.orange,
       amber: colors.amber,
@@ -30,6 +31,10 @@ module.exports = {
       black: colors.black,
       blueGray: colors.blueGray,
       transparent: 'transparent',
+      
+    },
+    fontFamily: {
+      lato: ['Lato', 'sans-serif'],
     },
     borderWidth: {
       DEFAULT: '1px',

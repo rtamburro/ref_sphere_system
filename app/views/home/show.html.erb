@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+    <% controller.redirect_to current_user %>
+<% else %>
+<div class="flex flex-col min-h-screen bg-coolGray-900">
+    <div class="w-screen h-screen">
+        <div class="flex flex-col items-center justify-center h-full text-center text-white">
+            <h1 class="mb-10 text-6xl font-bold font-lato">Soccer Officiating Made Easy</h1>
+            <h2 class="mb-8 text-2xl font-semibold font-lato">Complete Online Assigning Solution to Assign Officials</h2>
+            <button class="mx-auto btn btn-learn">Learn More</button>
+        </div>
+    </div>
+    <div class="w-screen h-screen bg-coolGray-400">
+        <div class="flex flex-col items-center justify-center h-full text-center text-cooleGray-900">
+            <h1 class="mb-10 text-6xl font-bold font-lato">Soccer Officiating Made Easy</h1>
+            <h2 class="mb-8 text-2xl font-semibold font-lato">Complete Online Assigning Solution to Assign Officials</h2>
+            <button class="mx-auto btn btn-learn">Learn More</button>
+        </div>
+    </div>
+
+    <footer class="sticky inline-flex items-center w-full h-32 mx-auto mt-2 mb-4 text-white justify-evenly">
+        <img class="h-28" <%= image_tag("usl.png") %>
+        <img class="h-28" <%= image_tag("upsl.png") %>
+        <img class="h-20" <%= image_tag("ifab.png") %>
+        <img class="h-28" <%= image_tag("fifa.png") %>
+        <img class="h-28" <%= image_tag("usa.png") %>
+        <img class="h-28" <%= image_tag("mls.png") %>
+    </footer>
+</div>
+<% end %>

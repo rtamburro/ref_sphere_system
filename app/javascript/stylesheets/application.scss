@@ -1,3 +1,20 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+
+.btn {
+    @apply px-4 py-3 shadow-sm transition ease-in-out duration-300 rounded leading-snug whitespace-nowrap text-center font-semibold
+}
+
+.btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700
+}
+
+.btn-nav {
+    @apply bg-blueGray-200 text-black
+}
+
+.btn-learn {
+    @apply bg-blueGray-200 text-black w-32
+}
+
 @import "tailwindcss/utilities"; 

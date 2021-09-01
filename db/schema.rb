@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_185848) do
+ActiveRecord::Schema.define(version: 2021_09_01_193623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_185848) do
     t.integer "invitations_count", default: 0
     t.integer "grade"
     t.integer "role"
+    t.string "email_2"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
