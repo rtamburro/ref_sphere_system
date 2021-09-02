@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>League:</strong>
+  <%= @game.league&.title %>
+</p>
+
+<p>
   <strong>Home team:</strong>
   <%= @game.home_team %>
 </p>

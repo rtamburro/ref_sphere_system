@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
       :grade,
       :role,
       :profile_picture,
-      address: [:street_address, :city, :state, :zip])
+      address: [:street_address, :city, :state, :zip_code])
   end
 
   def account_update_params
@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
       :grade,
       :role,
       :profile_picture,
-      address: [:street_address, :city, :state, :zip])
+      address: [:street_address, :city, :state, :zip_code])
   end
 end
 

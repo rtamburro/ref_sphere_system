@@ -1,0 +1,19 @@
+<div class="ml-40">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Leagues</h1>
+  <% @leagues.each do |league| %>
+    <%= league.title %>
+    <% league.games.each do |game| %>
+    <div class="mb-4">
+      <p><%= game.start_time&.strftime("%a %b %d, %Y %l:%M%P")  %> - <%= game.end_time&.strftime("%l:%M%P")  %></p>
+      <p><%= game.teams %></p>
+
+      <p><%= game.assignment.center_referee&.name %></p>
+      <p><%= game.assignment.assistant_referee_1&.name %></p>
+      <p><%= game.assignment.assistant_referee_2&.name %></p>
+      <p><%= game.assignment.fourth_official&.name %></p>
+    </div>
+    <% end %>
+  <% end %>      
+</div>

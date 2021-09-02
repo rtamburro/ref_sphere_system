@@ -6,6 +6,12 @@
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
           <div class="mb-6">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">League</label>
+              <%= f.input :league, label: false do %>
+                <%= f.select :league_id, League.all.map { |r| [r.title, r.id] }, {include_blank: "Select League"}, {class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+              <% end %>
+          </div>
+          <div class="mb-6">
             <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Home Team</label>
               <%= f.input :home_team,
                   label:false, 

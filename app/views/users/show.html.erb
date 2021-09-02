@@ -1,7 +1,7 @@
 <div class="z-0 w-full h-32 pb-20 bg-black"></div>
 <div class="inline-flex mb-10">
     <% if current_user.profile_picture.attached? %>
-        <img class="w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80" src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.5, :width=>300, :height=>300, :crop=>"thumb") %> >
+        <img class="w-48 h-48 -mt-24 border-yellow-400 border-solid rounded-full border-6 ml-80" src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.5, :width=>300, :height=>300, :crop=>"thumb") %> >
     <% else %>
         <%= image_tag("profile_default.jpg", class: "w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80") %>
     <% end %>
@@ -35,7 +35,7 @@
         <div class="flex-auto px-4 py-5">
           <div class="tab-content tab-space">
             <div class="block" id="tab-profile">
-                <div class="mb-32">
+                <div class="">
                     <%= month_calendar(events: current_user.games+current_user.blocks) do |date, events| %>
                         <h1><%= date.day %></h1>
                     
@@ -59,19 +59,19 @@
               <% current_user.games.each do |game| %>
                 <ul>
                     <li class="w-1/2 mb-4 text-left border-2 rounded-md border-coolGray-900">
-                        <p class=""><%= game.start_time&.strftime("%a %b %d, %Y %l:%M%P")  %> - <%= game.end_time&.strftime("%l:%M%P")  %></p>
-                        <p class="mb-2"><%= game.home_team %> vs <%= game.away_team %></p>
-                        <p class="mb-2">Center: <%= game.assignment.center_referee&.name %></p>
-                        <p class="mb-2">AR1: <%= game.assignment.assistant_referee_1&.name %></p>
-                        <p class="mb-2">AR2: <%= game.assignment.assistant_referee_2&.name %></p> 
-                        <p class="">4th: <%= game.assignment.fourth_official&.name %></p> 
+                        <p class="font-bold"><%= game.start_time&.strftime("%a %b %d, %Y %l:%M%P")  %> - <%= game.end_time&.strftime("%l:%M%P")  %></p>
+                        <p class="mb-2 font-bold"><%= game.league.title %> - <%= game.home_team %> vs <%= game.away_team %></p>
+                        <p><a class="mb-2 font-bold">Center: </a><%= game.assignment.center_referee&.name %></p>
+                        <p><a class="mb-2 font-bold">AR1: </a><%= game.assignment.assistant_referee_1&.name %></p>
+                        <p><a class="mb-2 font-bold">AR2: </a><%= game.assignment.assistant_referee_2&.name %></p> 
+                        <p><a class="mb-2 font-bold">4th: </a><%= game.assignment.fourth_official&.name %></p> 
                          
                     </li>
                 </ul>
               <% end %>
             </div>
             <div class="hidden" id="tab-options">
-                <div class="flex flex-row items-center text-center justify-evenly">
+                <div class="flex flex-row items-center justify-around text-center">
                     <div class="">
                         <h1 class=""><strong>Primary Email: </strong><%= current_user.email %></h1>
                         <h1 class="mb-4"><strong>Secondary Email: </strong><%= current_user.email_2 %></h1>
@@ -79,7 +79,10 @@
                     <div class="">
                         <h1 class=""><strong>Cell Phone: </strong><%= current_user.formatted_cell_phone %></h1>
                         <h1 class=""><strong>Work Phone: </strong><%= current_user.formatted_work_phone %></h1>
-                        <h1 class=""><strong>Home Phone: </strong><%= current_user.formatted_home_phone %></h1>
+                        <h1 class="mb-4"><strong>Home Phone: </strong><%= current_user.formatted_home_phone %></h1>
+                        <%= link_to edit_user_registration_path do %>
+                          <h1 class="btn btn-primary">Edit Profile</h1>
+                        <% end %>
                     </div>
                     <div class="">
                         <h1 class=""><strong>Address: </strong></h1>

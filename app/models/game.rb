@@ -2,6 +2,7 @@ class Game < ApplicationRecord
     has_one :assignment, dependent: :destroy
     has_many :users, through: :assignment
 
+    belongs_to :league
     after_create :create_assignment 
 
     def create_assignment

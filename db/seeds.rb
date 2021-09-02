@@ -106,21 +106,28 @@ User.create!(
         zip_code: Faker::Address.zip_code}
 )
 
+puts "Seeding Leagues..."
+
+League.create!(name: "NCAA D1")
+
 puts "Seeding Games..."
 
 Game.create!(
+    league_id: 1,
     home_team: "UConn",
     away_team: "Bryant University",
     start_time: DateTime.new(2021, 8, 26,  12,  0,  0),
     end_time: DateTime.new(2021, 8, 26,  14,  0,  0)
 )
 Game.create!(
+    league_id: 1,
     home_team: "Fairfield University",
     away_team: "NJIT",
     start_time: DateTime.new(2021, 8, 13,  17,  0,  0),
     end_time: DateTime.new(2021, 8, 13,  19,  0,  0)
 )
 Game.create!(
+    league_id: 1,
     home_team: "Dartmouth University",
     away_team: "Yale University",
     start_time: DateTime.new(2021, 8, 24,  14,  30,  0),
@@ -128,6 +135,7 @@ Game.create!(
 )
 
 Game.create!(
+    league_id: 1,
     home_team: "University of Florida",
     away_team: "TCU",
     start_time: DateTime.new(2021, 8, 26,  11,  0,  0),

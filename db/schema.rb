@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_193623) do
+ActiveRecord::Schema.define(version: 2021_09_01_214858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 2021_09_01_193623) do
     t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "league_id"
+    t.index ["league_id"], name: "index_games_on_league_id"
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -117,4 +125,5 @@ ActiveRecord::Schema.define(version: 2021_09_01_193623) do
   add_foreign_key "assignments", "users", column: "center_referee_id"
   add_foreign_key "assignments", "users", column: "fourth_official_id"
   add_foreign_key "blocks", "users"
+  add_foreign_key "games", "leagues"
 end

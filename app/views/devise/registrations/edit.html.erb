@@ -1,37 +1,127 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="flex flex-col items-center h-screen my-32">
+    <div class="w-full max-w-2xl ">
+        <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+        <h2 class="text-center"><a class="font-bold">Editing Profile of: <a/><%= current_user.name %></h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Profile Picture</label>
+              <%= f.file_field :image, accept: 'image/png, image/jpeg', direct_upload: true %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Primary Email</label>     
+                <%= f.input :email,
+                    label: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Secondary Email</label>     
+                <%= f.input :email_2,
+                    label: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+        
+        <div class="mb-6">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">New Password</label>
+                <%= f.input :password,
+                            label:false,
+                            hint: ("Leave Blank for no changes"),
+                            input_html: { autocomplete: "password", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">New Password Confirmation</label>
+                <%= f.input :password_confirmation,
+                    label:false,
+                    input_html: { autocomplete: "current-password", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Current Confirmation</label>
+                <%= f.input :current_password,
+                    label:false,
+                    hint: ("We need your current password to confirm your changes"),
+                    required: true,
+                    input_html: { autocomplete: "current-password", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <%= f.simple_fields_for :address do |a| %>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Street Address</label>
+                <%= a.input :street_address, id: :street_address,
+                    label:false,
+                    input_html: { autocomplete: "street address", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">City</label>
+                <%= a.input :city, id: :city,
+                    label:false,
+                    input_html: { autocomplete: "city", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">State</label>
+                <%= a.input :state, id: :state,
+                    label:false,
+                    input_html: { autocomplete: "state", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Zip Code</label>
+                <%= a.input :zip_code, id: :zip_code,
+                    label:false,
+                    input_html: { autocomplete: "zip code", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      <% end %>
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Cell Phone</label>
+                <%= f.input :cell_phone,
+                            label:false,
+                            autofocus: true,
+                            input_html: { autocomplete: "cell phone", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Work Phone</label>
+                <%= f.input :work_phone,
+                            label:false,
+                            autofocus: true,
+                            input_html: { autocomplete: "work phone", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Home Phone</label>
+                <%= f.input :home_phone,
+                            label:false,
+                            autofocus: true,
+                            input_html: { autocomplete: "home phone", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      <div class="flex flex-row space-x-10">
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Referee Grade</label>
+            <%= f.select :grade, options_for_select(User.grades.map { |key, value| [key.humanize, key] }), {prompt: "Select Grade"}, class: "form-control",
+                              
+                              label:false,
+                              autofocus: true,
+                              input_html: { autocomplete: "grade", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Roles</label>
+            <%= f.select :role, options_for_select(User.roles.map { |key, value| [key.humanize, key] }), {prompt: "Select Role"}, class: "form-control",
+                              
+                              label:false,
+                              autofocus: true,
+                              input_html: { autocomplete: "role", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Update" %>
+      </div>
     <% end %>
-    
-    <%= f.input :email_2,
-                required: false,
-                input_html: { autocomplete: "new-email_2" } %>            
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.file_field :profile_picture, accept: 'image/png, image/jpeg', direct_upload: true %>
   </div>
+</div>
+  
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
 
 <h3>Cancel my account</h3>
 
