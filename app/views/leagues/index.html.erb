@@ -1,19 +1,27 @@
-<div class="ml-40">
-  <p id="notice"><%= notice %></p>
+<style>
+  .game-info-toggle:checked+.game-menu{
+    display: block;
+  }
+</style>
 
-  <h1>Leagues</h1>
-  <% @leagues.each do |league| %>
-    <%= league.title %>
-    <% league.games.each do |game| %>
-    <div class="mb-4">
-      <p><%= game.start_time&.strftime("%a %b %d, %Y %l:%M%P")  %> - <%= game.end_time&.strftime("%l:%M%P")  %></p>
-      <p><%= game.teams %></p>
-
-      <p><%= game.assignment.center_referee&.name %></p>
-      <p><%= game.assignment.assistant_referee_1&.name %></p>
-      <p><%= game.assignment.assistant_referee_2&.name %></p>
-      <p><%= game.assignment.fourth_official&.name %></p>
+<% @leagues.each do |league| %>
+  <label for="game-info-toggle<%= league.id %>" class="cursor-pointer ">
+    <div class="w-1/4 mt-20 mb-4 ml-20 border-2 rounded-full border-coolGray-900">
+      <h1 class="mt-2 mb-2 text-lg text-center"><%= league.title %></h1>
     </div>
+  </label>
+  <input type="checkbox" class="hidden game-info-toggle" id="game-info-toggle<%= league.id %>" />
+  <div class="hidden game-menu" id="game-menu">
+    <% league.games.each do |game| %>
+      <div class="w-1/4 mb-10 ml-24 ">
+        <h1><%= game.time %></h1>
+        <h1><%= game.venue&.name %></h1>
+        <h1><%= game.teams %></h1>
+        <h1>Ref: <%= game.assignment.center_referee&.name %></h1>
+        <h1>AR1: <%= game.assignment.assistant_referee_1&.name %></h1>
+        <h1>AR2: <%= game.assignment.assistant_referee_2&.name %></h1>
+        <h1>4th: <%= game.assignment.fourth_official&.name %></h1>
+      </div>
     <% end %>
-  <% end %>      
-</div>
+  </div>
+<% end %>

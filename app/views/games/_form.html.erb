@@ -24,6 +24,12 @@
                   input_html: {class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
           </div>
           <div class="mb-6">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Venue</label>
+              <%= f.input :venue, label: false do %>
+                <%= f.select :venue_id, Venue.all.map { |r| [r.name, r.id] }, {include_blank: "Select Venue"}, {class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+              <% end %>
+          </div>
+          <div class="mb-6">
             <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Start Time</label>
               <%= f.input :start_time,
                   label:false,
