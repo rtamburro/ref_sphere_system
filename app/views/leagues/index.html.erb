@@ -4,24 +4,27 @@
   }
 </style>
 
-<% @leagues.each do |league| %>
-  <label for="game-info-toggle<%= league.id %>" class="cursor-pointer ">
-    <div class="w-1/4 mt-20 mb-4 ml-20 border-2 rounded-full border-coolGray-900">
-      <h1 class="mt-2 mb-2 text-lg text-center"><%= league.title %></h1>
-    </div>
-  </label>
-  <input type="checkbox" class="hidden game-info-toggle" id="game-info-toggle<%= league.id %>" />
-  <div class="hidden game-menu" id="game-menu">
-    <% league.games.each do |game| %>
-      <div class="w-1/4 mb-10 ml-24 ">
-        <h1><%= game.time %></h1>
-        <h1><%= game.venue&.name %></h1>
-        <h1><%= game.teams %></h1>
-        <h1>Ref: <%= game.assignment.center_referee&.name %></h1>
-        <h1>AR1: <%= game.assignment.assistant_referee_1&.name %></h1>
-        <h1>AR2: <%= game.assignment.assistant_referee_2&.name %></h1>
-        <h1>4th: <%= game.assignment.fourth_official&.name %></h1>
+<div class="mt-10">
+  <% @leagues.order("title").each do |league| %>
+    <label for="game-info-toggle<%= league.id %>" class="cursor-pointer ">
+      <div class="w-2/12 mb-4 ml-20 text-white border-2 rounded-full bg-coolGray-900 border-coolGray-900">
+        <h1 class="mt-2 mb-2 text-lg text-center "><%= league.title %></h1>
       </div>
-    <% end %>
+    </label>
+    <input type="checkbox" class="hidden game-info-toggle" id="game-info-toggle<%= league.id %>" />
+    <div class="hidden game-menu" id="game-menu">
+      <% league.games.each do |game| %>
+        <div class="w-1/4 mb-2 ml-24 ">
+          <h1><strong><%= game.time %></strong></h1>
+          <h1><strong><%= game.venue&.name %></strong></h1>
+          <h1><strong><%= game.teams %></strong></h1>
+          <h1><strong>Ref: </strong><%= game.assignment&.center_referee&.name %></h1>
+          <h1><strong>AR1: </strong><%= game.assignment&.assistant_referee_1&.name %></h1>
+          <h1><strong>AR2: </strong><%= game.assignment&.assistant_referee_2&.name %></h1>
+          <h1><strong>4th: </strong><%= game.assignment&.fourth_official&.name %></h1>
+        </div>
+        <hr class="w-2/12 mb-2 ml-24 border-2 border-coolGray-900 dotted" />
+      <% end %>
+    </div>
+  <% end %>
   </div>
-<% end %>

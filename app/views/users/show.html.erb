@@ -6,7 +6,7 @@
         <%= image_tag("profile_default.jpg", class: "w-48 h-48 -mt-24 border-solid rounded-full border-sky-300 border-6 ml-80") %>
     <% end %>
     <div>
-        <h1 class="pt-4 pl-4 text-2xl text-left"><%= current_user.first_name %></h1>
+        <h1 class="pt-4 pl-4 text-2xl text-left"><%= current_user.name %></h1>
         <h1 class="pt-2 pl-4 text-sm text-left"><%= current_user.grade %> Referee | 
         <%= current_user.address["city"] %>, <%= current_user.address["state"] %></h1>
     </div>
@@ -17,7 +17,7 @@
       <ul class="flex flex-row flex-wrap pt-3 pb-4 mb-0 list-none">
         <li class="flex-auto ml-2 mr-2 -mb-px text-center ">
           <a class="block px-5 py-3 text-xs font-bold leading-normal text-white uppercase rounded shadow-lg cursor-pointer bg-coolGray-900" onclick="changeAtiveTab(event,'tab-profile')">
-            <i class="mr-1 text-base"></i>  Calendar View
+            <i class="mr-1 text-base"></i>  Calendar
           </a>
         </li>
         <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
@@ -43,11 +43,11 @@
                             <div>
                                 <% if event.is_a? Game %>
                                     <%= link_to event do %>
-                                        <h1 class="text-center text-white bg-blue-500"><%= event.teams %></h1>
+                                        <h1 class="text-center text-white bg-coolGray-900"><%= event.teams %></h1>
                                     <% end %>
                                 <% elsif event.is_a? Block %>
                                     <%= link_to event do %>
-                                        <h1 class="text-center bg-red-500"> Block: <%= event.start_time.strftime("%I:%M%P")  %> - <%= event.end_time.strftime("%I:%M%P")  %> </h1>
+                                        <h1 class="text-center bg-red-500"> Block: <%= event.start_time.strftime("%l:%M%P")  %> - <%= event.end_time.strftime("%l:%M%P")  %> </h1>
                                     <% end %>
                                 <% end %>
                             </div>    
@@ -56,9 +56,9 @@
                 </div>
             </div>
             <div class="hidden text-center" id="tab-settings">
-              <% current_user.games.each do |game| %>
+              <% current_user.games.order('start_time asc').each do |game| %>
                 <ul>
-                    <li class="w-1/2 mb-4 text-left border-2 rounded-md border-coolGray-900">
+                    <li class="w-1/4 mb-4 text-sm text-left border-2 rounded-md border-coolGray-900">
                         <p class="font-bold"><%= game.start_time&.strftime("%a %b %d, %Y %l:%M%P")  %> - <%= game.end_time&.strftime("%l:%M%P")  %></p>
                         <p class="mb-2 font-bold"><%= game.league.title %> - <%= game.home_team %> vs <%= game.away_team %></p>
                         <p><a class="mb-2 font-bold">Center: </a><%= game.assignment.center_referee&.name %></p>
@@ -104,7 +104,7 @@
 
 
   
-  <script type="text/javascript">
+<script type="text/javascript">
     function changeAtiveTab(event,tabID){
       let element = event.target;
       while(element.nodeName !== "A"){

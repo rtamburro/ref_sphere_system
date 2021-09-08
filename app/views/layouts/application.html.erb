@@ -15,7 +15,15 @@
 
     <style>
       #menu-toggle:checked + #menu {
-        display:block;
+        display: block;
+      }
+
+      ul li ul li {
+        display: none;
+      }
+
+      ul li:hover ul li {
+        display: block;
       }
     </style>
   </head>
@@ -46,7 +54,7 @@
         <div class="hidden w-full lg:flex lg:items-center lg:w-auto" id="menu">
           <nav>
             <ul class="items-center justify-between pt-4 text-base text-white lg:flex lg:pt-0">
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.role == "Referee" %>
               <li>
                 <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
                   <h1>Home</h1>
@@ -54,7 +62,46 @@
               </li>
               <li>
                 <%= link_to leagues_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Leagues</h1>
+                  <h1>Open Games</h1>
+                <% end %>
+              </li>
+              
+              <li>
+                <%= link_to venues_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Venues</h1>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Schedule</h1>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to blocks_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Blocks</h1>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1 class="btn btn-nav">Sign Out</h1>
+                <% end %>
+              </li>
+              <%= link_to current_user do %>
+                <% if current_user.profile_picture.attached? %>
+                  <img src=<%= current_user.profile_picture.url(:gravity=>"face", :zoom=>0.7, :width=>300, :height=>300, :crop=>"thumb") %> class="w-12 h-12 ml-4 border-2 border-transparent rounded-full hover:border-red-500" alt="name">
+                <% else %>
+                  <%= image_tag("profile_default.jpg", class: "w-12 h-12 ml-4 border-2 border-transparent rounded-full hover:border-red-500") %>
+                <% end %>
+              <% end %> 
+            <% elsif user_signed_in? && current_user.role == "Assignor" %>
+              <li>
+                <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Home</h1>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to leagues_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                  <h1>Open Games</h1>
                 <% end %>
               </li>
               <li>
@@ -67,15 +114,34 @@
                   <h1>Venue</h1>
                 <% end %>
               </li>
-              <li>
-                <%= link_to root_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Schedule</h1>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_user_invitation_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
-                  <h1>Invite User</h1>
-                <% end %>
+              <li><a class="block px-0 py-3 border-b-2 border-transparent lg:p-4">Create</a>
+                <ul class="absolute text-white bg-coolGray-900">
+                  <li>
+                    <%= link_to new_user_invitation_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                      <h1>New Referee</h1>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_game_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                      <h1>New Game</h1>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_league_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                      <h1>New League</h1>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_block_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                      <h1>New Block</h1>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_venue_path, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>
+                      <h1>New Venue</h1>
+                    <% end %>
+                  </li>
+                </ul>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete, class:"lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-orange-500" do %>

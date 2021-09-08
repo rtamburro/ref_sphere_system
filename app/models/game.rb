@@ -13,10 +13,10 @@ class Game < ApplicationRecord
     end
 
     def teams
-        teams = "#{home_team} vs #{away_team}"
+        "#{home_team} vs #{away_team}"
     end
 
     def time
-        time =  "#{start_time&.strftime("%b %d, %Y %l:%M%P")} - #{end_time&.strftime("%l:%M%P")}"
+        "#{start_time&.strftime("%b %d, %Y %l:%M%P")} - #{end_time&.strftime("%l:%M%P")}"
     end
 end

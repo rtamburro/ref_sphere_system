@@ -3,7 +3,7 @@
 <h1>Games</h1>
 
 
-    <% @games.each do | game | %>
+    <% @games.order('start_time asc').each do | game | %>
     <div class="mb-10 text-center">
         <%= link_to game do %>
             <p><%= game.league.title %> - <%= game.home_team %> vs <%= game.away_team %></p>

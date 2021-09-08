@@ -65,6 +65,6 @@ class BlocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def block_params
-      params.require(:block).permit(:start_time, :end_time)
+      params.require(:block).permit(:start_time, :end_time, :reason)
     end
 end

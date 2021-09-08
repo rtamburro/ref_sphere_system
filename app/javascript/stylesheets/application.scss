@@ -17,4 +17,11 @@
     @apply bg-blueGray-200 text-black w-32
 }
 
+.btn-edit {
+    @apply bg-coolGray-900 text-white py-2
+}
+
+.border-test {
+    @apply border-2 border-pink-600
+}
 @import "tailwindcss/utilities"; 
