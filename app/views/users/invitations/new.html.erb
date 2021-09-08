@@ -3,8 +3,8 @@
   <div class="w-full max-w-xs ">
     <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
       <div class="mb-4">
-      <h2 class="mb-4 text-center">New User Invitation</h2>
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Email</label>
+        <h2 class="mb-4 text-center">New Referee Invitation</h2>
+        <label class="block mb-2 text-sm font-bold text-gray-700">Email</label>
           <%= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
             <%= f.error_notification %>
 
@@ -19,15 +19,15 @@
             <% end %>
 
             <div class="mb-4">
-              <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Roles</label>
+              <label class="block mb-2 text-sm font-bold text-gray-700">Roles</label>
                 <%= f.select :role, options_for_select(User.roles.map { |key, value| [key.humanize, key] }), {prompt: "Select Role"}, class: "form-control",
                   label:false,
                   autofocus: true,
                   input_html: { autocomplete: "role", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
             </div>
             <div class="mb-4">
-              <label class="block mb-2 text-sm font-bold text-gray-700" for="username">Referee Grade</label>
-                <%= f.select :grade, options_for_select(User.grades.map { |key, value| [key.humanize, key] }), {prompt: "Select Grade"}, class: "form-control",
+              <label class="block mb-2 text-sm font-bold text-gray-700">Referee Grade</label>
+                <%= f.select :grade, options_for_select(User.grades.map { |key, value| [key, key] }), {prompt: "Select Grade"}, class: "form-control",
                   label:false,
                   autofocus: true,
                   input_html: { autocomplete: "role", class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
@@ -37,3 +37,7 @@
               <%= f.button :submit, t("devise.invitations.new.submit_button") %>
             </div>
           <% end %>
+      </div>
+    </div>
+  </div>
+</div>

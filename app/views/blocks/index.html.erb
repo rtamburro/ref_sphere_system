@@ -7,6 +7,10 @@
       <li class="mb-4">
         <h1><a class="font-bold">Date/Time: </a><%= block.start_time&.strftime("%b %d, %Y %l:%M%P")  %> - <%= block.end_time&.strftime("%l:%M%P")  %></h1>
         <h1><a class="font-bold text-red-500">Reason: </a><%= block.reason %></h1>
+        <div class="flex items-center justify-center space-x-4">
+          <%= link_to 'Edit', edit_block_path(block), class:"btn btn-edit w-2/12" %>
+          <%= link_to 'Delete', block_path(block), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-delete w-2/12 " %>
+        </div>
       </li>
     <% end %>
     </ol>

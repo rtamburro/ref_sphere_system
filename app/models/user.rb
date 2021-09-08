@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
 
   enum role: {Referee: 0, Assessor: 1, Assignor: 2, Admin: 3}
-  enum grade: {Grassroots: 0, Regional: 1, National: 2, "P.R.O": 3, FIFA: 4}
+  enum grade: {Grassroots: 0, Regional: 1, National: 2, PRO: 3, FIFA: 4}
 
   def games
     Game.joins(:assignment).where("assignments.center_referee_id = ? OR assignments.assistant_referee_1_id = ? OR assignments.assistant_referee_2_id = ? OR assignments.fourth_official_id = ?", id, id, id, id)

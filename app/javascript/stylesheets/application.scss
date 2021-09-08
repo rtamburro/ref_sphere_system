@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 
 .btn {
-    @apply px-4 py-3 shadow-sm transition ease-in-out duration-300 rounded leading-snug whitespace-nowrap text-center font-semibold
+    @apply px-4 py-3 shadow-sm transition ease-in-out duration-300 rounded leading-snug whitespace-nowrap text-center font-semibold cursor-pointer
 }
 
 .btn-primary {
@@ -18,7 +18,15 @@
 }
 
 .btn-edit {
-    @apply bg-coolGray-900 text-white py-2
+    @apply bg-blue-500 text-white py-2 hover:bg-blue-600
+}
+
+.btn-delete {
+    @apply border border-red-600 text-red-600 py-2 hover:bg-red-600 hover:text-white
+}
+
+.btn-create {
+    @apply bg-emerald-400 text-white hover:bg-emerald-500
 }
 
 .border-test {
