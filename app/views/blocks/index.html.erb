@@ -1,13 +1,21 @@
-<div class="flex flex-row">
-  <div class="w-1/2">
-  <h1 class="mt-4 mb-4 text-center">Showing Blocks for: <%= current_user.name %></h1>
-  
+<div class="grid gap-4 grid-col-2">
+  <div class="col-span-2">
+    <h1 class="text-2xl font-bold text-center">Blocks</h1>
+    <%= month_calendar(events: current_user.blocks) do |date, blocks| %>
+      <h1><%= date.day %></h1>
+      
+      <% blocks.each do |block| %>
+            <h1 class="text-center bg-red-500"> Block: <%= block.start_time.strftime("%l:%M%P")  %> - <%= block.end_time.strftime("%l:%M%P") %></h1>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="">
     <ol class="text-center list-inside justify-left">
     <% current_user.blocks.order("start_time").each do |block| %>
       <li class="mb-4">
         <h1><a class="font-bold">Date/Time: </a><%= block.start_time&.strftime("%b %d, %Y %l:%M%P")  %> - <%= block.end_time&.strftime("%l:%M%P")  %></h1>
         <h1><a class="font-bold text-red-500">Reason: </a><%= block.reason %></h1>
-        <div class="flex items-center justify-center space-x-4">
+        <div class="flex items-center justify-center mt-2 space-x-4">
           <%= link_to 'Edit', edit_block_path(block), class:"btn btn-edit w-2/12" %>
           <%= link_to 'Delete', block_path(block), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-delete w-2/12 " %>
         </div>
@@ -15,20 +23,19 @@
     <% end %>
     </ol>
   </div>
-  <div class="flex flex-col w-1/2">
-    <div class="flex flex-col "><%= render 'create_form', block: @block %></div>
-    <div class="">
-      <h1 class="text-2xl font-bold text-center">Blocks</h1>
-      <%= month_calendar(events: current_user.blocks) do |date, blocks| %>
-        <h1><%= date.day %></h1>
-        
-        <% blocks.each do |block| %>
-          <div>
-            <%= link_to block do %>
-              <h1 class="text-center bg-red-500"> Block: <%= block.start_time.strftime("%l:%M%P")  %> - <%= block.end_time.strftime("%l:%M%P")  %> </h1>
-            <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  <div class=""><%= render 'create_form', block: @block %></div>
+
 </div>
+
+
+
+  
+
+
+
+  
+    
+
+
+
+    
